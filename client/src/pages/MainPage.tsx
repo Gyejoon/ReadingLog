@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from 'components/base/Header';
-import { MainBanner } from 'static/svg';
+import MainBanner from 'components/main/MainBanner';
 
 interface MainPageProps {}
 

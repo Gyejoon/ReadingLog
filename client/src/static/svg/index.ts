@@ -1,1 +1,1 @@
-export { ReactComponent as MainBanner } from './main-banner.svg';
+export { ReactComponent as MainBannerImage } from './main-banner.svg';
