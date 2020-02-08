@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import palette from 'lib/styles/palette';
 
 const HeaderBlock = styled.div`
   display: flex;
@@ -16,11 +17,32 @@ const HeaderBlock = styled.div`
     flex: 1;
     padding-left: 16px;
     span {
-      height: 28px;
       font-size: 25px;
-      font-weight: 500;
-      color: #0267ff;
+      font-family: KottaOne;
+      color: ${palette.blue.bright};
       padding-left: 8px;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex: 2;
+    .menu-content {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      li {
+        font-size: 20px;
+        display: inline-block;
+        padding: 24px 10px 24px 10px;
+
+        &.active {
+          color: ${palette.blue.bright};
+          border-bottom: 2px solid ${palette.blue.bright};
+        }
+      }
     }
   }
 
@@ -59,7 +81,13 @@ const Header: React.SFC<HeaderProps> = () => {
   return (
     <HeaderBlock>
       <div className="title">
-        <span>StartBook</span>
+        <span>ReadingLog</span>
+      </div>
+      <div className="content">
+        <ul className="menu-content">
+          <li className="active">책찾기</li>
+          <li>리딩로그</li>
+        </ul>
       </div>
       <div className="right">
         <button className="sign-in">로그인</button>
