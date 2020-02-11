@@ -1,18 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MainBannerImage } from 'static/svg';
+
+import { mainBanner } from 'static/images';
 import MainSearch from './MainSearch';
+import media from 'lib/styles/media';
 
 const MainBannerBlock = styled.div`
   display: flex;
+
+  ${media.small} {
+    display: none;
+  }
+
   .wrapper {
-    padding: 150px 150px 0 570px;
+    position: relative;
+    top: 100px;
+    left: 30%;
+
     p {
       font-size: 55px;
       color: #fff;
     }
   }
-  svg {
+
+  img {
+    width: 100%;
     padding-top: 74px;
     position: absolute;
     top: 0;
@@ -26,7 +38,7 @@ interface MainBannerProps {}
 const MainBanner: React.FC<MainBannerProps> = () => {
   return (
     <MainBannerBlock>
-      <MainBannerImage />
+      <img src={mainBanner} alt={'banner'} />
       <div className="wrapper">
         <p>
           어떤 책을 찾으시나요?

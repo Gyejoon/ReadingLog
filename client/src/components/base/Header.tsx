@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
+import media from 'lib/styles/media';
 
 const HeaderBlock = styled.div`
   display: flex;
@@ -28,6 +29,10 @@ const HeaderBlock = styled.div`
     display: flex;
     flex: 2;
     .menu-content {
+      ${media.small} {
+        display: none;
+      }
+
       display: flex;
       list-style: none;
       margin: 0;
@@ -71,6 +76,9 @@ const HeaderBlock = styled.div`
     .sign-up {
       color: #ffffff;
       background-color: #4378ff;
+      ${media.small} {
+        display: none;
+      }
     }
   }
 `;

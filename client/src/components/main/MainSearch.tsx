@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
+import media from 'lib/styles/media';
 
 const MainSearchBlock = styled.div`
   display: flex;
+  
   width: 833px;
   height: 48px;
+
+  ${media.small} {
+    width: 500px;
+    height: 20px;
+  }
+
   border-radius: 47px;
   box-shadow: 0 3px 24px 0 rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
