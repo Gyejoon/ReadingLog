@@ -6,6 +6,8 @@ import media from 'lib/styles/media';
 const MainSearchBlock = styled.div`
   display: flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
   
   width: 833px;
   height: 48px;
@@ -18,8 +20,6 @@ const MainSearchBlock = styled.div`
   border-radius: 47px;
   box-shadow: 0 3px 24px 0 rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
-  align-items: center;
-  justify-content: center;
   padding: 12px;
   > span {
     flex: 1;
