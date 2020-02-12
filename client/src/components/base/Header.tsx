@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import media from 'lib/styles/media';
+import Navigation from './Navigation';
 
 const HeaderBlock = styled.div`
   display: flex;
@@ -22,32 +23,6 @@ const HeaderBlock = styled.div`
       font-family: KottaOne;
       color: ${palette.blue.bright};
       padding-left: 8px;
-    }
-  }
-
-  .content {
-    display: flex;
-    flex: 2;
-    .menu-content {
-      ${media.small} {
-        display: none;
-      }
-
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      li {
-        font-size: 20px;
-        display: inline-block;
-        padding: 24px 10px 24px 10px;
-
-        &.active {
-          color: ${palette.blue.bright};
-          border-bottom: 2px solid ${palette.blue.bright};
-        }
-      }
     }
   }
 
@@ -91,12 +66,7 @@ const Header: React.SFC<HeaderProps> = () => {
       <div className="title">
         <span>ReadingLog</span>
       </div>
-      <div className="content">
-        <ul className="menu-content">
-          <li className="active">책찾기</li>
-          <li>리딩로그</li>
-        </ul>
-      </div>
+      <Navigation />
       <div className="right">
         <button className="sign-in">로그인</button>
         <button className="sign-up">회원가입</button>
