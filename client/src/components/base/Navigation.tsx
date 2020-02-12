@@ -5,7 +5,7 @@ import media from 'lib/styles/media';
 
 const NavigationBlock = styled.div`
   display: flex;
-  flex: 2;
+  flex: 3;
   ul {
     ${media.small} {
       display: none;
