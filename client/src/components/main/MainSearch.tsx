@@ -5,6 +5,7 @@ import media from 'lib/styles/media';
 
 const MainSearchBlock = styled.div`
   display: flex;
+  position: relative;
   
   width: 833px;
   height: 48px;
