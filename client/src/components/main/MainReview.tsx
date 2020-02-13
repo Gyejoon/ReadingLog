@@ -32,7 +32,7 @@ const MainReviewCard = styled.div`
   background-color: #fff;
   box-shadow: 0 3px 22px 0 rgba(0, 0, 0, 0.12);
 
-  .header {
+  .head {
     font-size: 8px;
     color: #cfcfcf;
   }
@@ -43,8 +43,8 @@ const MainReviewCard = styled.div`
     margin-top: 10px;
   }
 
-  .footer {
-    text-align: right;
+  .foot {
+    float: right;
     i {
       font-size: 15px;
     }
@@ -77,11 +77,11 @@ const MainReview: React.SFC<MainReviewProps> = () => {
 
     return four.map((i: number) => (
       <MainReviewCard key={i}>
-        <span className="header">gyejoong님</span>
+        <span className="head">gyejoong님</span>
         <p className="content">
           개미가 아닌 고양이의 시선으로 보는 독특한 작품!!
         </p>
-        <span className="footer">{starRender()}</span>
+        <span className="foot">{starRender()}</span>
       </MainReviewCard>
     ));
   };
