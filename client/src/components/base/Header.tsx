@@ -58,15 +58,17 @@ const HeaderBlock = styled.div`
   }
 `;
 
-interface HeaderProps {}
+interface HeaderProps {
+  path: string;
+}
 
-const Header: React.SFC<HeaderProps> = () => {
+const Header: React.SFC<HeaderProps> = ({ path }) => {
   return (
     <HeaderBlock>
       <div className="title">
         <span>ReadingLog</span>
       </div>
-      <Navigation />
+      <Navigation path={path} />
       <div className="right">
         <button className="sign-in">로그인</button>
         <button className="sign-up">회원가입</button>
