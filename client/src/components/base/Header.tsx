@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import media from 'lib/styles/media';
 import Navigation from './Navigation';
+import { Link } from 'react-router-dom';
 
 const HeaderBlock = styled.div`
   display: flex;
@@ -18,6 +19,10 @@ const HeaderBlock = styled.div`
     display: flex;
     flex: 1;
     padding-left: 16px;
+    a {
+      text-decoration: none;
+    }
+    
     span {
       font-size: 25px;
       font-family: KottaOne;
@@ -66,7 +71,9 @@ const Header: React.SFC<HeaderProps> = ({ path }) => {
   return (
     <HeaderBlock>
       <div className="title">
-        <span>ReadingLog</span>
+        <Link to="/">
+          <span>ReadingLog</span>
+        </Link>
       </div>
       <Navigation path={path} />
       <div className="right">
