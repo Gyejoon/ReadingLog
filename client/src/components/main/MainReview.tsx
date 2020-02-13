@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import Icon from 'components/common/Icon';
+import { starCountCalculate } from 'lib/utils';
 
 const MainReviewBlock = styled.div`
   margin-top: 120px;
@@ -53,29 +54,8 @@ const MainReviewCard = styled.div`
 interface MainReviewProps {}
 
 const MainReview: React.SFC<MainReviewProps> = () => {
-  const starCalculate = (star: number) => {
-    const result: number[] = [];
-    let resultSum = 0;
-
-    for (let i = 0; i < 5; i++) {
-      if (resultSum < star) {
-        if (star - resultSum >= 1) {
-          result.push(1);
-          resultSum++;
-        } else {
-          result.push(0.5);
-          resultSum += 0.5;
-        }
-      } else {
-        result.push(0);
-      }
-    }
-
-    return result;
-  };
-
   const starRender = () => {
-    const stars = starCalculate(4.5);
+    const stars = starCountCalculate(4.5);
 
     return stars.map((star: number) => {
       let starType;
