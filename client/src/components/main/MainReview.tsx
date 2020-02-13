@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
-import Icon from 'components/common/Icon';
-import { starCountCalculate } from 'lib/utils';
+import MainReviewCard from './MainReviewCard';
 
 const MainReviewBlock = styled.div`
   margin-top: 120px;
@@ -24,67 +23,22 @@ const MainReviewBlock = styled.div`
   }
 `;
 
-const MainReviewCard = styled.div`
-  width: 220px;
-  height: 96px;
-  padding: 12px;
-  margin-right: 16px;
-  background-color: #fff;
-  box-shadow: 0 3px 22px 0 rgba(0, 0, 0, 0.12);
-
-  .head {
-    font-size: 8px;
-    color: #cfcfcf;
-  }
-
-  .content {
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-
-  .foot {
-    float: right;
-    i {
-      font-size: 15px;
-    }
-  }
-`;
-
 interface MainReviewProps {}
 
 const MainReview: React.SFC<MainReviewProps> = () => {
-  const starRender = () => {
-    const stars = starCountCalculate(4.5);
-
-    return stars.map((star: number, index: number) => {
-      let starType;
-
-      if (star === 1) {
-        starType = 'star';
-      } else if (star === 0.5) {
-        starType = 'star_half';
-      } else {
-        starType = 'star_border';
-      }
-
-      return <Icon key={index} name={starType} color="#ffc93d" />;
-    });
-  };
-
   const mainReviewCardRender = () => {
     const four = [1, 2, 3, 4];
 
     return four.map((i: number) => (
-      <MainReviewCard key={i}>
-        <span className="head">gyejoong님</span>
-        <p className="content">
-          개미가 아닌 고양이의 시선으로 보는 독특한 작품!!
-        </p>
-        <span className="foot">{starRender()}</span>
-      </MainReviewCard>
+      <MainReviewCard
+        key={i}
+        username="gyejoong"
+        reviewTitle="개미가 아닌 고양이의 시선으로 보는 독특한 작품!!"
+        starRate={4.5}
+      />
     ));
   };
+
   return (
     <MainReviewBlock>
       <div className="title">#어떤 책의 리뷰일까요?</div>
