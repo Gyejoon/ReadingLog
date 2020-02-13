@@ -57,7 +57,7 @@ const MainReview: React.SFC<MainReviewProps> = () => {
   const starRender = () => {
     const stars = starCountCalculate(4.5);
 
-    return stars.map((star: number) => {
+    return stars.map((star: number, index: number) => {
       let starType;
 
       if (star === 1) {
@@ -68,7 +68,7 @@ const MainReview: React.SFC<MainReviewProps> = () => {
         starType = 'star_border';
       }
 
-      return <Icon name={starType} color="#ffc93d" />;
+      return <Icon key={index} name={starType} color="#ffc93d" />;
     });
   };
 
