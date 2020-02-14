@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import media from 'lib/styles/media';
+import { Link } from 'react-router-dom';
 
 const NavigationBlock = styled.div`
   display: flex;
@@ -16,6 +17,14 @@ const NavigationBlock = styled.div`
     margin: 0;
     padding: 0;
     overflow: hidden;
+
+    a {
+      text-decoration: none;
+      &:visited {
+        color: #333;
+      }
+    }
+
     li {
       font-size: 20px;
       display: inline-block;
@@ -29,15 +38,33 @@ const NavigationBlock = styled.div`
   }
 `;
 
-interface NavigationProps {}
+interface NavigationProps {
+  path: string;
+}
 
-const Navigation: React.SFC<NavigationProps> = () => {
+const Navigation: React.SFC<NavigationProps> = ({ path }) => {
+  const navRender = () => {
+    const navs = [
+      {
+        path: '/',
+        name: '책찾기',
+      },
+      {
+        path: '/reading-log',
+        name: '리딩로그',
+      },
+    ];
+
+    return navs.map((nav, index) => (
+      <Link to={nav.path} key={index}>
+        <li className={nav.path === path ? 'active' : ''}>{nav.name}</li>
+      </Link>
+    ));
+  };
+
   return (
     <NavigationBlock>
-      <ul>
-        <li className="active">책찾기</li>
-        <li>리딩로그</li>
-      </ul>
+      <ul>{navRender()}</ul>
     </NavigationBlock>
   );
 };
