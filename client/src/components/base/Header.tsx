@@ -22,7 +22,7 @@ const HeaderBlock = styled.div`
     a {
       text-decoration: none;
     }
-    
+
     span {
       font-size: 25px;
       font-family: KottaOne;
@@ -65,9 +65,15 @@ const HeaderBlock = styled.div`
 
 interface HeaderProps {
   path: string;
+  showLoginModal: () => void;
+  showRegisterModal: () => void;
 }
 
-const Header: React.SFC<HeaderProps> = ({ path }) => {
+const Header: React.SFC<HeaderProps> = ({
+  path,
+  showLoginModal,
+  showRegisterModal,
+}) => {
   return (
     <HeaderBlock>
       <div className="title">
@@ -77,8 +83,12 @@ const Header: React.SFC<HeaderProps> = ({ path }) => {
       </div>
       <Navigation path={path} />
       <div className="right">
-        <button className="sign-in">로그인</button>
-        <button className="sign-up">회원가입</button>
+        <button className="sign-in" onClick={showLoginModal}>
+          로그인
+        </button>
+        <button className="sign-up" onClick={showRegisterModal}>
+          회원가입
+        </button>
       </div>
     </HeaderBlock>
   );
