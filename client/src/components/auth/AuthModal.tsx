@@ -15,10 +15,10 @@ const AuthModalBlock = styled.div<{ visible: boolean }>`
   justify-content: center;
   z-index: 20;
   .wrapper {
-    width: 324px;
-    height: 448px;
+    width: 354px;
+    height: 528px;
     background: white;
-    padding: 1.5rem;
+    padding: 2.2rem;
 
     ${props =>
       props.visible
