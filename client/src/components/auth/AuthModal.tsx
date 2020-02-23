@@ -14,7 +14,6 @@ const AuthModalBlock = styled.div<{ visible: boolean }>`
   align-items: center;
   justify-content: center;
   z-index: 20;
-  overflow: hidden;
   .wrapper {
     width: 324px;
     height: 448px;
@@ -32,13 +31,20 @@ const AuthModalBlock = styled.div<{ visible: boolean }>`
 
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.09);
     display: flex;
+    flex-direction: column;
+
+    .brand {
+      font-size: 1rem;
+      color: ${palette.blue.bright};
+      font-family: KottaOne;
+      margin-bottom: 8px;
+    }
 
     .exit-wrapper {
       display: flex;
       justify-content: flex-end;
       font-size: 1.5rem;
       color: ${palette.gray6};
-      margin-bottom: 2.25rem;
       svg {
         cursor: pointer;
       }
@@ -46,8 +52,6 @@ const AuthModalBlock = styled.div<{ visible: boolean }>`
 
     .form-wrapper {
       flex: 1;
-      display: flex;
-      flex-direction: column;
     }
   }
 `;
@@ -68,6 +72,7 @@ const AuthModal: React.SFC<AuthModalProps> = ({
         <div className="exit-wrapper">
           <MdClose onClick={onClose} tabIndex={1} />
         </div>
+        <div className="brand">ReadingLog</div>
         <div className="form-wrapper">{children}</div>
       </div>
     </AuthModalBlock>
