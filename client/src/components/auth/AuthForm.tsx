@@ -6,6 +6,7 @@ import { AiFillFacebook } from 'react-icons/ai';
 import AuthFormButton from './AuthFormButton';
 import { GoogleIcon } from 'static/svg';
 import AuthLoginForm from './AuthLoginForm';
+import AuthRegisterForm from './AuthRegisterForm';
 
 const AuthFormBlock = styled.div`
   display: flex;
@@ -86,11 +87,11 @@ const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
       <Divider />
       <div className="social">
         <span>소셜 아이디로 로그인</span>
-        <AuthFormButton loginType="facebook">
+        <AuthFormButton authType="facebook">
           <AiFillFacebook tabIndex={1} size={24} />
           페이스북으로 로그인
         </AuthFormButton>
-        <AuthFormButton loginType="google">
+        <AuthFormButton authType="google">
           <GoogleIcon tabIndex={1} className="google" />
           구글 계정으로 로그인
         </AuthFormButton>

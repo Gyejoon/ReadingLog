@@ -23,7 +23,7 @@ const AuthLoginForm: React.SFC<AuthLoginFormProps> = () => {
         <input type="password" placeholder="비밀번호를 입력해주세요." />
         <i className="lock icon"></i>
       </div>
-      <AuthFormButton loginType="default">LOGIN</AuthFormButton>
+      <AuthFormButton authType="default">LOGIN</AuthFormButton>
     </AuthLoginFormBlock>
   );
 };
