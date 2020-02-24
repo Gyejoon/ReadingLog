@@ -4,6 +4,7 @@ import MainPage from 'pages/MainPage';
 import ReadingLogPage from 'pages/ReadingLogPage';
 import HeaderContainer from 'containers/base/HeaderContainer';
 import Core from 'containers/base/Core';
+import UserPage from 'pages/UserPage';
 
 interface AppProps {}
 
@@ -14,6 +15,7 @@ const App: React.FC<AppProps> = () => {
       <Switch>
         <Route path="/" component={MainPage} exact />
         <Route path="/reading-log" component={ReadingLogPage} />
+        <Route path="/@:username" component={UserPage} />
       </Switch>
       <Core />
     </>
