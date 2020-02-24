@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import transitions from 'lib/styles/transitions';
 import palette from 'lib/styles/palette';
+import { AuthMode } from 'modules/core';
 
-const AuthModalBlock = styled.div<{ visible: boolean }>`
+const AuthModalBlock = styled.div<{ visible: boolean; mode: AuthMode }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +17,7 @@ const AuthModalBlock = styled.div<{ visible: boolean }>`
   z-index: 20;
   .wrapper {
     width: 354px;
-    height: 528px;
+    height: ${props => (props.mode === 'LOGIN' ? '528px' : '608px')};
     background: white;
     padding: 2.2rem;
 
@@ -57,17 +58,19 @@ const AuthModalBlock = styled.div<{ visible: boolean }>`
 `;
 
 interface AuthModalProps {
+  mode: AuthMode;
   visible: boolean;
   onClose: () => void;
 }
 
 const AuthModal: React.SFC<AuthModalProps> = ({
+  mode,
   visible,
   children,
   onClose,
 }) => {
   return (
-    <AuthModalBlock visible={visible}>
+    <AuthModalBlock visible={visible} mode={mode}>
       <div className="wrapper">
         <div className="exit-wrapper">
           <MdClose onClick={onClose} tabIndex={1} />

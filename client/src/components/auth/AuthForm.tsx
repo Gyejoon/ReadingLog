@@ -78,14 +78,10 @@ interface AuthFormProps {
 
 const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
   const formTitle = mode === 'LOGIN' ? '로그인' : '회원가입';
-  return (
-    <AuthFormBlock>
-      <div className="form-title">{formTitle}</div>
-      <div className="form-content">
-        <AuthLoginForm />
-      </div>
-      <Divider />
-      <div className="social">
+
+  const socialAuthRender = () => {
+    return mode === 'LOGIN' ? (
+      <>
         <span>소셜 아이디로 로그인</span>
         <AuthFormButton authType="facebook">
           <AiFillFacebook tabIndex={1} size={24} />
@@ -95,19 +91,45 @@ const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
           <GoogleIcon tabIndex={1} className="google" />
           구글 계정으로 로그인
         </AuthFormButton>
+      </>
+    ) : (
+      <>
+        <AuthFormButton authType="facebook">
+          <AiFillFacebook tabIndex={1} size={24} />
+          페이스북으로 회원가입
+        </AuthFormButton>
+        <AuthFormButton authType="google">
+          <GoogleIcon tabIndex={1} className="google" />
+          구글 계정으로 회원가입
+        </AuthFormButton>
+      </>
+    );
+  };
+
+  return (
+    <AuthFormBlock>
+      <div className="form-title">{formTitle}</div>
+      <div className="form-content">
+        {mode === 'LOGIN' ? <AuthLoginForm /> : <AuthRegisterForm />}
       </div>
       <Divider />
-      <div className="foot">
-        <span>아직 회원이 아니신가요?</span>
-        <div
-          className="link"
-          tabIndex={7}
-          onClick={onToggleMode}
-          data-testid="switchmode"
-        >
-          회원가입
-        </div>
-      </div>
+      <div className="social">{socialAuthRender()}</div>
+      {mode === 'LOGIN' && (
+        <>
+          <Divider />
+          <div className="foot">
+            <span>아직 회원이 아니신가요?</span>
+            <div
+              className="link"
+              tabIndex={7}
+              onClick={onToggleMode}
+              data-testid="switchmode"
+            >
+              회원가입
+            </div>
+          </div>
+        </>
+      )}
     </AuthFormBlock>
   );
 };
