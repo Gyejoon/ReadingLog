@@ -6,6 +6,7 @@ const AuthLoginFormBlock = styled.form`
   .input {
     width: 100%;
     margin-bottom: 12px;
+    height: 40px;
   }
 `;
 
