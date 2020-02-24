@@ -35,7 +35,7 @@ const MainBannerBlock = styled.div`
 
 interface MainBannerProps {}
 
-const MainBanner: React.FC<MainBannerProps> = () => {
+const MainBanner: React.SFC<MainBannerProps> = () => {
   return (
     <MainBannerBlock>
       <img src={mainBanner} alt={'banner'} />
