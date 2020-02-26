@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "offline": "sls offline --port 5001",
-    "dev": "NODE_ENV=development ts-node-dev --respawn ./src/server.ts",
+    "dev": "NODE_ENV=development ts-node-dev --respawn -r tsconfig-paths/register ./src/server.ts",
     "build": "rm -rf ./build/ && tsc",
     "deploy:production": "serverless deploy --stage production"
   },
