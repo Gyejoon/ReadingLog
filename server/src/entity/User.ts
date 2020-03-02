@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Index, Column, UpdateDateColumn, CreateDateColumn, OneToOne } from 'typeorm';
+import UserProfile from './UserProfile';
 
 @Entity('users')
 export default class User {
