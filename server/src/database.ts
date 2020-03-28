@@ -28,7 +28,7 @@ export default class Database {
       database: process.env.TYPEORM_DATABASE,
       username: process.env.TYPEORM_USERNAME,
       port: parseInt(process.env.TYPEORM_PORT || '5432', 10),
-      synchronize: process.env.SYNCHRONIZE === 'true',
+      synchronize: process.env.TYPEORM_SYNCHRONIZE === 'true',
       appname: 'reading-log-server',
       logging: process.env.TYPEORM_LOGGING === 'true',
     };
