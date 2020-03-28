@@ -17,7 +17,7 @@ const AuthModalBlock = styled.div<{ visible: boolean; mode: AuthMode }>`
   z-index: 20;
   .wrapper {
     width: 354px;
-    height: ${props => (props.mode === 'LOGIN' ? '528px' : '608px')};
+    height: ${props => (props.mode === 'LOGIN' ? '528px' : '648px')};
     background: white;
     padding: 2.2rem;
 
