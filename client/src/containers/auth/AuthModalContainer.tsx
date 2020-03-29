@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'modules';
 import AuthModal from 'components/auth/AuthModal';
-import AuthForm from 'components/auth/AuthForm';
 import { closeAuthModal, changeAuthModalMode } from 'modules/core';
+import AuthFormContainer from './AuthFormContainer';
 
 interface AuthModalProps {}
 
@@ -24,7 +24,7 @@ const AuthModalContainer: React.FC<AuthModalProps> = () => {
 
   return (
     <AuthModal visible={visible} onClose={onClose} mode={mode}>
-      <AuthForm mode={mode} onToggleMode={onToggleMode} />
+      <AuthFormContainer mode={mode} onToggleMode={onToggleMode} />
     </AuthModal>
   );
 };
