@@ -38,6 +38,7 @@ export const decodeToken = <T = any>(token: string): Promise<T> => {
     if (!authKey) return;
     jwt.verify(token, authKey, (err, decoded) => {
       if (err) reject(err);
+      console.log(err);
       resolve(decoded as any);
     });
   });
@@ -51,13 +52,13 @@ type TokenData = {
 };
 
 type RefreshTokenData = {
-  userId: string;
+  user_id: string;
 } & TokenData;
 
 export const refresh = async (refreshToken: string) => {
   try {
     const decoded = await decodeToken<RefreshTokenData>(refreshToken);
-    const user = await getRepository(User).findOne(decoded.userId);
+    const user = await getRepository(User).findOne(decoded.user_id);
     if (!user) {
       const error = new Error('InvalidUserError');
       throw error;

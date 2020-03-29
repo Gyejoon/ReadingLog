@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jwt-simple';
+import { decodeToken } from '../token';
+import logger from '@/logger';
 
-const { AUTH_KEY } = process.env;
-
-const getTokenFromHeader = (authorization?: string) => {
+export const getTokenFromHeader = (authorization?: string) => {
   if (authorization && authorization.split(' ')[0] === 'Bearer') {
     return authorization.split(' ')[1];
   }
@@ -11,31 +10,25 @@ const getTokenFromHeader = (authorization?: string) => {
   return;
 };
 
-export const authRequired = (
+export const authorization = async (
   req: Request,
-  res: Response,
+  _: Response,
   next: NextFunction,
 ) => {
   const token = getTokenFromHeader(req.headers.authorization);
 
   if (!token) {
-    res.status(401);
-    return res.json({
-      msg: 'NOT_AUTHORIZED',
-    });
+    return next();
   }
 
   try {
-    const decoded = jwt.decode(token, AUTH_KEY || '');
+    const decoded = await decodeToken(token);
 
     if (decoded) {
-      req.app.set('userId', decoded.userId);
+      req.app.set('userId', decoded.user_id);
     }
   } catch (e) {
-    res.status(401);
-    return res.json({
-      msg: 'INVALID_TOKEN',
-    });
+    logger.error(e);
   }
 
   return next();
