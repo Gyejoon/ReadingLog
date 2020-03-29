@@ -19,9 +19,17 @@ export const validateBody = (
   return true;
 };
 
-export const createHashSha512 = (text: string) => {
-  return crypto
-    .createHash('sha512')
+export function hash(text: string) {
+  const authKey = process.env.AUTH_KEY;
+
+  if (!authKey) {
+    throw new Error('Please set AUTH_KEY Environment variable');
+  }
+
+  const hashed = crypto
+    .createHmac('sha256', authKey)
     .update(text)
     .digest('base64');
-};
+
+  return hashed;
+}

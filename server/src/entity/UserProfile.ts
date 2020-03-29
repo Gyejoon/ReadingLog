@@ -15,10 +15,10 @@ export default class UserProfile {
   id!: string;
 
   @Column({ length: 255 })
-  display_name!: string;
+  nickname!: string;
 
-  @Column({ length: 255 })
-  short_bio!: string;
+  @Column({ length: 20, nullable: true, type: 'varchar' })
+  mobile_phone_number!: string | null;
 
   @Column({ length: 255, nullable: true, type: 'varchar' })
   thumbnail!: string | null;
@@ -44,6 +44,6 @@ export default class UserProfile {
   })
   profile_links!: any;
 
-  @Column('text')
-  about!: string;
+  @Column({ type: 'text', nullable: true })
+  about!: string | null;
 }
