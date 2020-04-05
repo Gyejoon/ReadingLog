@@ -1,11 +1,6 @@
 import { combineReducers } from 'redux';
-import core, { CoreState } from './core';
-import auth, { AuthState } from './auth';
-
-export type RootState = {
-  core: CoreState;
-  auth: AuthState;
-};
+import core from './core';
+import auth from './auth';
 
 const rootReducer = combineReducers({
   core: core.reducer,
@@ -13,3 +8,5 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+export type RootState = ReturnType<typeof rootReducer>;

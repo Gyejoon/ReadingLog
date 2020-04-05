@@ -18,13 +18,13 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ApolloProvider client={client}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
-  </ApolloProvider>,
+    </ApolloProvider>
+  </Provider>,
   document.getElementById('root'),
 );
 

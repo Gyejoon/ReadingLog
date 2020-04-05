@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import styled from 'styled-components';
 import AuthFormButton from './AuthFormButton';
 import { LoginFormState } from 'modules/auth';
@@ -14,13 +14,20 @@ const AuthLoginFormBlock = styled.form`
 interface AuthLoginFormProps {
   state: LoginFormState;
   changeInputAction: (form: string, name: string, value: string) => void;
+  onRequest: () => void;
 }
 
 const AuthLoginForm: React.SFC<AuthLoginFormProps> = ({
   state,
   changeInputAction,
+  onRequest,
 }) => {
   const { username, password } = state;
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onRequest();
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,7 +36,7 @@ const AuthLoginForm: React.SFC<AuthLoginFormProps> = ({
   };
 
   return (
-    <AuthLoginFormBlock>
+    <AuthLoginFormBlock onSubmit={onSubmit}>
       <div className="ui left icon input">
         <input
           type="text"

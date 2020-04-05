@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import styled from 'styled-components';
 import AuthFormButton from './AuthFormButton';
 import { RegisterFormState } from 'modules/auth';
@@ -14,11 +14,13 @@ const AuthRegisterFormBlock = styled.form`
 interface AuthRegisterFormProps {
   state: RegisterFormState;
   changeInputAction: (form: string, name: string, value: string) => void;
+  onRequest: () => void;
 }
 
 const AuthRegisterForm: React.SFC<AuthRegisterFormProps> = ({
   state,
   changeInputAction,
+  onRequest,
 }) => {
   const {
     username,
@@ -28,6 +30,11 @@ const AuthRegisterForm: React.SFC<AuthRegisterFormProps> = ({
     mobilePhoneNumber,
   } = state;
 
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onRequest();
+  };
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -35,7 +42,7 @@ const AuthRegisterForm: React.SFC<AuthRegisterFormProps> = ({
   };
 
   return (
-    <AuthRegisterFormBlock>
+    <AuthRegisterFormBlock onSubmit={onSubmit}>
       <div className="ui left icon input">
         <input
           type="text"

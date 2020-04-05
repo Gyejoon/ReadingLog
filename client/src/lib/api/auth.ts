@@ -10,7 +10,7 @@ export type RegisterFormData = {
 export type AuthResponse = {};
 
 export const localRegister = (formData: RegisterFormData) =>
-  apiClient.post<AuthResponse>('/api/v1/register/local', formData);
+  apiClient.post<AuthResponse>('/api/v1/auth/register/local', formData);
 
 export type LoginFormData = {
   username: string;
@@ -18,4 +18,4 @@ export type LoginFormData = {
 };
 
 export const localLogin = (formData: LoginFormData) =>
-  apiClient.post<AuthResponse>('/api/v1/login/local', formData);
+  apiClient.post<AuthResponse>('/api/v1/auth/login/local', formData);
