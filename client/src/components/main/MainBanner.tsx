@@ -9,13 +9,13 @@ import MainReview from './MainReview';
 const MainBannerBlock = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
   ${media.small} {
     display: none;
   }
 
   .wrapper {
-    margin-left: 23%;
-
     .banner-desc {
       font-size: 55px;
       color: #fff;

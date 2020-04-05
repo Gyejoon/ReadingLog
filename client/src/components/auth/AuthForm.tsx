@@ -5,8 +5,6 @@ import palette from 'lib/styles/palette';
 import { AiFillFacebook } from 'react-icons/ai';
 import AuthFormButton from './AuthFormButton';
 import { GoogleIcon } from 'static/svg';
-import AuthLoginForm from './AuthLoginForm';
-import AuthRegisterForm from './AuthRegisterForm';
 
 const AuthFormBlock = styled.div`
   display: flex;
@@ -73,10 +71,16 @@ const Divider = styled.div`
 
 interface AuthFormProps {
   mode: AuthMode;
+  loading: boolean;
+  error: Error | null;
   onToggleMode: () => void;
 }
 
-const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
+const AuthForm: React.SFC<AuthFormProps> = ({
+  mode,
+  onToggleMode,
+  children,
+}) => {
   const formTitle = mode === 'LOGIN' ? '로그인' : '회원가입';
 
   const socialAuthRender = () => {
@@ -109,12 +113,10 @@ const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
   return (
     <AuthFormBlock>
       <div className="form-title">{formTitle}</div>
-      <div className="form-content">
-        {mode === 'LOGIN' ? <AuthLoginForm /> : <AuthRegisterForm />}
-      </div>
+      <div className="form-content">{children}</div>
       <Divider />
       <div className="social">{socialAuthRender()}</div>
-      {mode === 'LOGIN' && (
+      {mode === 'LOGIN' ? (
         <>
           <Divider />
           <div className="foot">
@@ -126,6 +128,21 @@ const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
               data-testid="switchmode"
             >
               회원가입
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <Divider />
+          <div className="foot">
+            <span>이미 계정이 있으신가요?</span>
+            <div
+              className="link"
+              tabIndex={7}
+              onClick={onToggleMode}
+              data-testid="switchmode"
+            >
+              로그인
             </div>
           </div>
         </>

@@ -5,6 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ApolloProvider } from '@apollo/react-hooks';
+import client from './lib/graphql/client';
 import { createStore } from 'redux';
 import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -17,9 +19,11 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ApolloProvider>
   </Provider>,
   document.getElementById('root'),
 );
