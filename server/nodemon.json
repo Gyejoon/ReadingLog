@@ -1,7 +1,0 @@
-{
-  "watch": ["src"],
-  "ext": "ts",
-  "delay": "2500",
-  "ignore": ["src/public", "test/*"],
-  "exec": "NODE_ENV=dev ts-node -r tsconfig-paths/register --files src/app.ts"
-}

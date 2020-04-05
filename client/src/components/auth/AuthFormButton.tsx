@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components';
 import palette from 'lib/styles/palette';
 
-export type ButtonLoginType = 'default' | 'facebook' | 'google';
+export type ButtonAuthType = 'default' | 'facebook' | 'google';
 
-const AuthFormButton = styled.button<{ loginType: ButtonLoginType }>`
+const AuthFormButton = styled.button<{ authType: ButtonAuthType }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   width: 100%;
   ${props =>
-    props.loginType === 'google'
+    props.authType === 'google'
       ? css`
           color: ${palette.gray6};
         `
@@ -20,25 +20,25 @@ const AuthFormButton = styled.button<{ loginType: ButtonLoginType }>`
   
 
   ${props =>
-    props.loginType === 'default' &&
+    props.authType === 'default' &&
     css`
       background-color: ${palette.blue.bright};
     `}
 
     ${props =>
-      props.loginType === 'facebook' &&
+      props.authType === 'facebook' &&
       css`
         background-color: #304d8a;
       `}
 
     ${props =>
-      props.loginType === 'google' &&
+      props.authType === 'google' &&
       css`
         background-color: white;
       `}
 
   ${props =>
-    props.loginType !== 'default' &&
+    props.authType !== 'default' &&
     css`
       border-radius: 4px;
     `}

@@ -5,7 +5,6 @@ import palette from 'lib/styles/palette';
 import { AiFillFacebook } from 'react-icons/ai';
 import AuthFormButton from './AuthFormButton';
 import { GoogleIcon } from 'static/svg';
-import AuthLoginForm from './AuthLoginForm';
 
 const AuthFormBlock = styled.div`
   display: flex;
@@ -72,41 +71,82 @@ const Divider = styled.div`
 
 interface AuthFormProps {
   mode: AuthMode;
+  loading: boolean;
+  error: Error | null;
   onToggleMode: () => void;
 }
 
-const AuthForm: React.SFC<AuthFormProps> = ({ mode, onToggleMode }) => {
+const AuthForm: React.SFC<AuthFormProps> = ({
+  mode,
+  onToggleMode,
+  children,
+}) => {
   const formTitle = mode === 'LOGIN' ? '로그인' : '회원가입';
-  return (
-    <AuthFormBlock>
-      <div className="form-title">{formTitle}</div>
-      <div className="form-content">
-        <AuthLoginForm />
-      </div>
-      <Divider />
-      <div className="social">
+
+  const socialAuthRender = () => {
+    return mode === 'LOGIN' ? (
+      <>
         <span>소셜 아이디로 로그인</span>
-        <AuthFormButton loginType="facebook">
+        <AuthFormButton authType="facebook">
           <AiFillFacebook tabIndex={1} size={24} />
           페이스북으로 로그인
         </AuthFormButton>
-        <AuthFormButton loginType="google">
+        <AuthFormButton authType="google">
           <GoogleIcon tabIndex={1} className="google" />
           구글 계정으로 로그인
         </AuthFormButton>
-      </div>
+      </>
+    ) : (
+      <>
+        <AuthFormButton authType="facebook">
+          <AiFillFacebook tabIndex={1} size={24} />
+          페이스북으로 회원가입
+        </AuthFormButton>
+        <AuthFormButton authType="google">
+          <GoogleIcon tabIndex={1} className="google" />
+          구글 계정으로 회원가입
+        </AuthFormButton>
+      </>
+    );
+  };
+
+  return (
+    <AuthFormBlock>
+      <div className="form-title">{formTitle}</div>
+      <div className="form-content">{children}</div>
       <Divider />
-      <div className="foot">
-        <span>아직 회원이 아니신가요?</span>
-        <div
-          className="link"
-          tabIndex={7}
-          onClick={onToggleMode}
-          data-testid="switchmode"
-        >
-          회원가입
-        </div>
-      </div>
+      <div className="social">{socialAuthRender()}</div>
+      {mode === 'LOGIN' ? (
+        <>
+          <Divider />
+          <div className="foot">
+            <span>아직 회원이 아니신가요?</span>
+            <div
+              className="link"
+              tabIndex={7}
+              onClick={onToggleMode}
+              data-testid="switchmode"
+            >
+              회원가입
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <Divider />
+          <div className="foot">
+            <span>이미 계정이 있으신가요?</span>
+            <div
+              className="link"
+              tabIndex={7}
+              onClick={onToggleMode}
+              data-testid="switchmode"
+            >
+              로그인
+            </div>
+          </div>
+        </>
+      )}
     </AuthFormBlock>
   );
 };
