@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 import User from '@/entity/User';
+import { Response } from 'express';
 
 const authKey = process.env.AUTH_KEY;
 
@@ -32,6 +33,36 @@ export const generateToken = (
     });
   });
 };
+
+export function setTokenCookie(
+  res: Response,
+  tokens: {
+    accessToken: string;
+    refreshToken: string;
+  },
+) {
+  res.cookie('access_token', tokens.accessToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60,
+    domain: '.reading-log.coo.kr',
+  });
+
+  res.cookie('refresh_token', tokens.refreshToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    domain: '.reading-log.coo.kr',
+  });
+
+  res.cookie('access_token', tokens.accessToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60,
+  });
+
+  res.cookie('refresh_token', tokens.refreshToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+  });
+}
 
 export const decodeToken = <T = any>(token: string): Promise<T> => {
   return new Promise((resolve, reject) => {

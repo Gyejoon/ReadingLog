@@ -62,8 +62,8 @@ export default class User {
     );
 
     return {
-      access_token: accessToken,
-      refresh_token: refreshToken,
+      accessToken,
+      refreshToken,
     };
   }
 
