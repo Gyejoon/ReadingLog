@@ -106,7 +106,7 @@ const HeaderBlock = styled.header`
   left: 0;
   align-items: center;
   justify-content: center;
-  height: 74px;
+  height: 72px;
   margin: 0 auto;
 
   > .title {
