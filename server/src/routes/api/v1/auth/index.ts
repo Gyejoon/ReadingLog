@@ -5,20 +5,23 @@ const router = express.Router();
 
 router.post('/register/local', localRegister);
 router.post('/login/local', localLogin);
-router.post('/logout', (_, res: Response) => {
-  res.cookie('access_token', '', {
+router.post('/logout', async (_, res: Response) => {
+  res.clearCookie('access_token', {
     domain:
       process.env.NODE_ENV === 'development'
         ? undefined
         : '.reading-log.coo.kr',
   });
 
-  res.cookie('refresh_token', '', {
+  res.clearCookie('refresh_token', {
     domain:
       process.env.NODE_ENV === 'development'
         ? undefined
         : '.reading-log.coo.kr',
   });
+
+  res.status(204);
+  return res.json({});
 });
 
 export default router;
