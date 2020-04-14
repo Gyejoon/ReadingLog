@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import media from 'lib/styles/media';
@@ -7,11 +7,30 @@ import { Link } from 'react-router-dom';
 import useHeader from './hooks/useHeader';
 import { userThumbnail } from 'static/images';
 import { MdArrowDropDown } from 'react-icons/md';
+import useToggle from 'lib/hooks/useToggle';
+import HeaderUserDropDown from './HeaderUserDropDown';
 
 interface HeaderProps {}
 
 const Header: React.SFC<HeaderProps> = () => {
-  const { user, path, showLoginModal, showRegisterModal } = useHeader();
+  const {
+    user,
+    path,
+    onLogout,
+    showLoginModal,
+    showRegisterModal,
+  } = useHeader();
+  const [userDropDown, toggleUserDropDown] = useToggle(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onOutsideClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (!ref.current) return;
+      if (ref.current.contains(e.target as any)) return;
+      toggleUserDropDown();
+    },
+    [toggleUserDropDown],
+  );
 
   return (
     <HeaderBlock>
@@ -24,10 +43,19 @@ const Header: React.SFC<HeaderProps> = () => {
       {user ? (
         <HeaderRight>
           <img src={user.profile.thumbnail || userThumbnail} alt="thumbnail" />
-          <div className="dropdown-wrapper">
+          <div
+            className="dropdown-wrapper"
+            onClick={toggleUserDropDown}
+            ref={ref}
+          >
             <span>{user.profile.nickname}</span>
-            <MdArrowDropDown className="icons" size="24"></MdArrowDropDown>
+            <MdArrowDropDown className="icons" size="24" />
           </div>
+          <HeaderUserDropDown
+            visible={userDropDown}
+            onClose={onOutsideClick}
+            onLogout={onLogout}
+          />
         </HeaderRight>
       ) : (
         <HeaderRight>
@@ -43,7 +71,7 @@ const Header: React.SFC<HeaderProps> = () => {
   );
 };
 
-const HeaderBlock = styled.div`
+const HeaderBlock = styled.header`
   display: flex;
   width: 100%;
   top: 0;
@@ -91,6 +119,11 @@ const HeaderRight = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: ${palette.gray8};
+
+    &:hover {
+      color: ${palette.gray6};
+    }
     .icons {
       margin-left: 4px;
     }

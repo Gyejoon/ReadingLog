@@ -19,3 +19,7 @@ export type LoginFormData = {
 
 export const localLogin = (formData: LoginFormData) =>
   apiClient.post<AuthResponse>('/api/v1/auth/login/local', formData);
+
+export const logout = () => {
+  apiClient.post('/api/v1/auth/logout');
+};
