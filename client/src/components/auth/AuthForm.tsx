@@ -72,7 +72,6 @@ const Divider = styled.div`
 interface AuthFormProps {
   mode: AuthMode;
   loading: boolean;
-  error: Error | null;
   onToggleMode: () => void;
 }
 

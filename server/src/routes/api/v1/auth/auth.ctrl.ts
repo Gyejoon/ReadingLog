@@ -4,6 +4,7 @@ import { validateBody, hash } from '@/lib/utils';
 import { getRepository } from 'typeorm';
 import User from '@/entity/User';
 import UserProfile from '@/entity/UserProfile';
+import { setTokenCookie } from '@/lib/token';
 
 export const localLogin = async (req: Request, res: Response) => {
   type RequestBody = {
@@ -51,6 +52,8 @@ export const localLogin = async (req: Request, res: Response) => {
   }
 
   const tokens = await foundUser.generateUserToken();
+
+  setTokenCookie(res, tokens);
 
   return res.json({
     tokens,
