@@ -10,6 +10,9 @@ import client from './lib/graphql/client';
 import { createStore } from 'redux';
 import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import storage from 'lib/storage';
+import { setUser } from 'modules/core';
+import { HelmetProvider } from 'react-helmet-async';
 
 const store = createStore(
   rootReducer,
@@ -17,14 +20,24 @@ const store = createStore(
   composeWithDevTools(),
 );
 
+const loadUser = () => {
+  const user = storage.getItem('CURRENT_USER');
+  if (!user) return;
+  store.dispatch(setUser(user));
+};
+
+loadUser();
+
 ReactDOM.render(
-  <Provider store={store}>
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ApolloProvider>
-  </Provider>,
+  <HelmetProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ApolloProvider>
+    </Provider>
+  </HelmetProvider>,
   document.getElementById('root'),
 );
 
