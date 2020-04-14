@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
+import media from 'lib/styles/media';
 
 const MainSectionTitleBlock = styled.div`
   span {
@@ -11,9 +12,13 @@ const MainSectionTitleBlock = styled.div`
   p {
     margin-top: 5px;
     margin-bottom: 10px;
-    font-size: 43px;
+    font-size: 42px;
     font-weight: 600;
     color: #333;
+
+    ${media.medium} {
+      font-size: 36px;
+    }
   }
 
   .tag-list {

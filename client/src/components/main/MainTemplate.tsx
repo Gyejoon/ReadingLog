@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MainTemplateBlock = styled.main`
-  align-items: center;
+  width: 100%;
+  max-width: 1176px;
+  margin: 0 auto;
   padding-top: 2.6rem;
 `;
 

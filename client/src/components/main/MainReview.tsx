@@ -2,11 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import MainReviewCard from './MainReviewCard';
+import media from 'lib/styles/media';
 
 const MainReviewBlock = styled.div`
   margin-top: 120px;
 
+  ${media.medium} {
+    margin-top: 48px;
+  }
+
   .title {
+    ${media.medium} {
+      display: none;
+    }
     background-color: ${palette.blue.soft};
     border-radius: 27px;
     box-shadow: 0 3px 22px 0 rgba(0, 0, 0, 0.12);
@@ -20,6 +28,7 @@ const MainReviewBlock = styled.div`
 
   .card-wrap {
     display: flex;
+    width: 100%;
   }
 `;
 

@@ -59,10 +59,10 @@ const MainBookSectionBlock = styled.section`
 `;
 
 const MainBookSectionWrapper = styled.div`
-  margin: 120px 0 120px 5%;
+  margin: 120px 0 120px 2%;
 
   ${media.medium} {
-    margin: 60px 0 60px 5%;
+    margin: 60px 0 60px 2%;
   }
 `;
 
