@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import OutsideClickHandler from 'react-outside-click-handler';
 import palette from 'lib/styles/palette';
-import { Link } from 'react-router-dom';
 import transitions from 'lib/styles/transitions';
 import useCloseTransition from 'lib/hooks/useCloseTransition';
+import DrawerMenuItem from './DrawerMenuItem';
 
 interface DrawerProps {
   visible: boolean;
@@ -25,12 +25,12 @@ const Drawer: React.SFC<DrawerProps> = ({ visible, onOutSideClick }) => {
           </header>
           <nav>
             <ul>
-              <Link to="/" className="link">
-                <li>책찾기</li>
-              </Link>
-              <Link to="/reading-log" className="link">
-                <li>리딩로그</li>
-              </Link>
+              <DrawerMenuItem to="/" onOutSideClick={onOutSideClick}>
+                책찾기
+              </DrawerMenuItem>
+              <DrawerMenuItem to="/reading-log" onOutSideClick={onOutSideClick}>
+                리딩로그
+              </DrawerMenuItem>
             </ul>
           </nav>
         </DrawerContentWrapper>
@@ -80,17 +80,6 @@ const DrawerContentWrapper = styled.div`
       margin: 0;
       padding: 0;
       overflow: hidden;
-
-      li {
-        margin: 24px 0 24px 0;
-        font-size: 18px;
-        font-weight: 600;
-        color: #333;
-      }
-
-      > .link {
-        text-decoration: none;
-      }
     }
   }
 `;
