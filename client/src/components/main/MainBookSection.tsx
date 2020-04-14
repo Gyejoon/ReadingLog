@@ -54,7 +54,7 @@ const MainBookSectionBlock = styled.section`
 `;
 
 const MainBookSectionWrapper = styled.div`
-  margin: 120px 0 120px 3%;
+  margin: 120px 0 120px 5%;
 `;
 
 export default MainBookSection;
