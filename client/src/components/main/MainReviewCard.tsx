@@ -1,15 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { starCountCalculate } from 'lib/utils';
+import media from 'lib/styles/media';
 import Star from 'components/common/Star';
 
 const MainReviewCardBlock = styled.div`
-  width: 220px;
+  position: relative;
+  width: 100%;
+  max-width: 220px;
   height: 96px;
   padding: 12px;
   margin-right: 16px;
   background-color: #fff;
   box-shadow: 0 3px 22px 0 rgba(0, 0, 0, 0.12);
+
+  ${media.medium} {
+    height: 76px;
+  }
 
   .head {
     font-size: 8px;
@@ -45,7 +52,7 @@ const MainReviewCard: React.SFC<MainReviewCardProps> = ({
     const stars = starCountCalculate(starRate);
 
     return stars.map((rate: number, index: number) => {
-      return <Star key={index} rate={rate} />;
+      return <Star key={index + rate} rate={rate} />;
     });
   };
 

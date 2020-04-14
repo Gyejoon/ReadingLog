@@ -6,18 +6,22 @@ import media from 'lib/styles/media';
 import MainSearch from './MainSearch';
 import MainReview from './MainReview';
 
-const MainBannerBlock = styled.div`
+const MainBannerBlock = styled.section`
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  ${media.small} {
-    display: none;
+  ${media.medium} {
+    padding: 0 24px 0 24px;
   }
 
   .wrapper {
     .banner-desc {
-      font-size: 55px;
+      font-size: 54px;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      font-weight: 600;
+      ${media.medium} {
+        font-size: 36px;
+      }
       color: #fff;
     }
   }

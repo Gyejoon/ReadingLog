@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import { Link } from 'react-router-dom';
 import useHeader from './hooks/useHeader';
 import { userThumbnail } from 'static/images';
-import { MdArrowDropDown } from 'react-icons/md';
+import { MdArrowDropDown, MdMenu } from 'react-icons/md';
 import useToggle from 'lib/hooks/useToggle';
 import HeaderUserDropDown from './HeaderUserDropDown';
 
@@ -35,19 +35,27 @@ const Header: React.SFC<HeaderProps> = () => {
   return (
     <HeaderBlock>
       <div className="title">
-        <Link to="/">
-          <span>ReadingLog</span>
-        </Link>
+        <div className="mobile-drawer">
+          <MdMenu size="32" color={palette.blue.bright} />
+        </div>
+        <div className="banner">
+          <Link to="/">
+            <span>ReadingLog</span>
+          </Link>
+        </div>
       </div>
       <Navigation path={path} />
       {user ? (
         <HeaderRight>
-          <img src={user.profile.thumbnail || userThumbnail} alt="thumbnail" />
           <div
             className="dropdown-wrapper"
             onClick={toggleUserDropDown}
             ref={ref}
           >
+            <img
+              src={user.profile.thumbnail || userThumbnail}
+              alt="thumbnail"
+            />
             <span>{user.profile.nickname}</span>
             <MdArrowDropDown className="icons" size="24" />
           </div>
@@ -89,7 +97,17 @@ const HeaderBlock = styled.header`
       text-decoration: none;
     }
 
+    .mobile-drawer {
+      display: none;
+      ${media.medium} {
+        display: block;
+      }
+    }
+
     span {
+      ${media.medium} {
+        display: none;
+      }
       font-size: 25px;
       font-family: KottaOne;
       color: ${palette.blue.bright};
@@ -110,6 +128,9 @@ const HeaderRight = styled.div`
     height: 30px;
     border-radius: 50%;
     margin-right: 12px;
+    ${media.small} {
+      margin: 0;
+    }
     object-fit: cover;
     transition: 0.125s all ease-in;
   }
@@ -120,6 +141,12 @@ const HeaderRight = styled.div`
     justify-content: center;
     cursor: pointer;
     color: ${palette.gray8};
+
+    ${media.medium} {
+      span {
+        display: none;
+      }
+    }
 
     &:hover {
       color: ${palette.gray6};

@@ -2,17 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import MainSectionTitle from './MainSectionTitle';
 import MainBookCard from './MainBookCard';
-
-const MainBookSectionBlock = styled.section`
-  margin-top: 120px;
-  padding-bottom: 120px;
-  margin-left: 23%;
-
-  .card-wrap {
-    display: flex;
-    margin-top: 20px;
-  }
-`;
+import media from 'lib/styles/media';
 
 interface MainBookSectionProps {
   recommend: string;
@@ -44,10 +34,36 @@ const MainBookSection: React.SFC<MainBookSectionProps> = ({
 
   return (
     <MainBookSectionBlock>
-      <MainSectionTitle recommend={recommend} title={title} tags={tags} />
-      <div className="card-wrap">{cardRender()}</div>
+      <MainBookSectionWrapper>
+        <MainSectionTitle recommend={recommend} title={title} tags={tags} />
+        <div className="card-wrap">{cardRender()}</div>
+      </MainBookSectionWrapper>
     </MainBookSectionBlock>
   );
 };
+
+const MainBookSectionBlock = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  ${media.medium} {
+    padding: 0 24px 0 24px;
+  }
+
+  .card-wrap {
+    display: flex;
+    margin-top: 20px;
+  }
+`;
+
+const MainBookSectionWrapper = styled.div`
+  margin: 120px 0 120px 2%;
+
+  ${media.medium} {
+    margin: 60px 0 60px 2%;
+  }
+`;
 
 export default MainBookSection;
