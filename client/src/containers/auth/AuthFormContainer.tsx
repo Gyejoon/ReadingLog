@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { AuthMode, closeAuthModal } from 'modules/core';
+import { AuthMode, setUser, closeAuthModal } from 'modules/core';
 import { RootState } from 'modules';
 import { useSelector, useDispatch } from 'react-redux';
 import AuthForm from 'components/auth/AuthForm';
@@ -8,6 +8,9 @@ import AuthRegisterForm from 'components/auth/AuthRegisterForm';
 import { changeInput } from 'modules/auth';
 import { localLogin, localRegister } from 'lib/api/auth';
 import { toast } from 'react-toastify';
+import { useApolloClient } from '@apollo/react-hooks';
+import { CurrentUser, GET_CURRENT_USER } from 'lib/graphql/user';
+import storage from 'lib/storage';
 
 interface AuthFormContainerProps {
   mode: AuthMode;
@@ -19,10 +22,9 @@ const AuthFormContainer: React.FC<AuthFormContainerProps> = ({
   onToggleMode,
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [, setData] = useState<any | null>(null);
-  const [error, setError] = useState<Error | null>(null);
   const { login, register } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const client = useApolloClient();
 
   const changeInputAction = useCallback(
     (form: string, name: string, value: string) => {
@@ -34,7 +36,7 @@ const AuthFormContainer: React.FC<AuthFormContainerProps> = ({
   const onRequest = async () => {
     try {
       setLoading(true);
-      const response = await (mode === 'LOGIN'
+      await (mode === 'LOGIN'
         ? localLogin(login)
         : localRegister({
             username: register.username,
@@ -42,24 +44,24 @@ const AuthFormContainer: React.FC<AuthFormContainerProps> = ({
             nickname: register.nickname,
             mobile_phone_number: register.mobilePhoneNumber,
           }));
-      setData(response.data);
+
+      const response = await client.query<{ auth: CurrentUser }>({
+        query: GET_CURRENT_USER,
+        fetchPolicy: 'network-only',
+      });
+      setLoading(false);
+      storage.setItem('CURRENT_USER', response.data.auth);
+      dispatch(setUser(response.data.auth));
       dispatch(closeAuthModal());
-      toast.success('정상적으로 로그인 되었습니다.');
     } catch (e) {
+      setLoading(false);
       toast.error('아이디 혹은 패스워드가 일치하지 않습니다.');
-      setError(e);
       throw e;
     }
-    setLoading(false);
   };
 
   return (
-    <AuthForm
-      mode={mode}
-      onToggleMode={onToggleMode}
-      loading={loading}
-      error={error}
-    >
+    <AuthForm mode={mode} onToggleMode={onToggleMode} loading={loading}>
       {mode === 'LOGIN' ? (
         <AuthLoginForm
           state={login}
