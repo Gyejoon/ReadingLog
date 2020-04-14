@@ -53,6 +53,30 @@ const popIn = keyframes`
   }
 `;
 
+const slideLeftToRight = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+`;
+
+const slideRightToLeft = keyframes`
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+`;
+
 const slideUp = keyframes`
   0% {
     transform: translateY(100%);
@@ -79,6 +103,8 @@ const transitions = {
   popIn,
   slideUp,
   slideDown,
+  slideLeftToRight,
+  slideRightToLeft,
 };
 
 export default transitions;
