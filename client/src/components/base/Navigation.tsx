@@ -8,7 +8,7 @@ const NavigationBlock = styled.div`
   display: flex;
   flex: 3;
   ul {
-    ${media.small} {
+    ${media.medium} {
       display: none;
     }
 
