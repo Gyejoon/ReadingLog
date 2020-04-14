@@ -4,6 +4,7 @@ import { CurrentUser, GET_CURRENT_USER } from '../../../lib/graphql/user';
 import { setUser } from '../../../modules/core';
 import { useQuery } from '@apollo/react-hooks';
 import { RootState } from '../../../modules';
+import storage from 'lib/storage';
 
 const useUserLoader = () => {
   const dispatch = useDispatch();
@@ -19,15 +20,11 @@ const useUserLoader = () => {
   useEffect(() => {
     if (user === undefined) return () => {};
     if (prevUser !== user) {
+      storage.setItem('CURRENT_USER', user);
       dispatch(setUser(user));
     }
     return undefined;
   }, [dispatch, prevUser, user]);
-
-  useEffect(() => {
-    if (user === undefined) return;
-    if (user === null) return; // not logged in
-  }, [user]);
 };
 
 export default useUserLoader;
