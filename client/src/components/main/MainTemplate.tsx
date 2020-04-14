@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MainTemplateBlock = styled.main`
-  margin: 0 auto;
+  align-items: center;
   padding-top: 2.6rem;
 `;
 

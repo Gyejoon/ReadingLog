@@ -2,18 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { mainBanner } from 'static/images';
-import media from 'lib/styles/media';
+// import media from 'lib/styles/media';
 import MainSearch from './MainSearch';
 import MainReview from './MainReview';
 
-const MainBannerBlock = styled.div`
+const MainBannerBlock = styled.section`
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  ${media.small} {
-    display: none;
-  }
 
   .wrapper {
     .banner-desc {
