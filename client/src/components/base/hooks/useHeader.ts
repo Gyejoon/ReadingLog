@@ -1,6 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeAuthModalMode, showAuthModal } from 'modules/core';
+import {
+  changeAuthModalMode,
+  showAuthModal,
+  showDrawer,
+  closeDrawer,
+} from 'modules/core';
 import { useCallback } from 'react';
 import { logout } from 'lib/api/auth';
 import { RootState } from 'modules';
@@ -10,6 +15,7 @@ export default function useHeader() {
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.core.user);
+  const drawer = useSelector((state: RootState) => state.core.drawer);
 
   const showLoginModal = useCallback(() => {
     dispatch(changeAuthModalMode('LOGIN'));
@@ -19,6 +25,14 @@ export default function useHeader() {
   const showRegisterModal = useCallback(() => {
     dispatch(changeAuthModalMode('REGISTER'));
     dispatch(showAuthModal());
+  }, [dispatch]);
+
+  const onDrawerClick = useCallback(() => {
+    dispatch(showDrawer());
+  }, [dispatch]);
+
+  const onDrawerOutSideClick = useCallback(() => {
+    dispatch(closeDrawer());
   }, [dispatch]);
 
   const onLogout = useCallback(async () => {
@@ -35,5 +49,8 @@ export default function useHeader() {
     showLoginModal,
     showRegisterModal,
     onLogout,
+    drawer,
+    showDrawer: onDrawerClick,
+    closeDrawer: onDrawerOutSideClick,
   };
 }
