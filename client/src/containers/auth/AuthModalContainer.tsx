@@ -31,8 +31,6 @@ const AuthModalContainer: React.FC<AuthModalContainerProps> = ({
     changeAuthModalMode(nextMode);
   }, [changeAuthModalMode, mode]);
 
-  if (!visible) return null;
-
   return (
     <AuthModal visible={visible} onClose={onClose} mode={mode}>
       <AuthFormContainer mode={mode} onToggleMode={onToggleMode} />
