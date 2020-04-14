@@ -109,7 +109,7 @@ const HeaderBlock = styled.header`
   height: 74px;
   margin: 0 auto;
 
-  .title {
+  > .title {
     display: flex;
     flex: 1;
     padding-left: 16px;
