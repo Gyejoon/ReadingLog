@@ -49,7 +49,7 @@ const MainBookSectionBlock = styled.section`
   justify-content: center;
 
   ${media.medium} {
-    padding: 0 36px 0 36px;
+    padding: 0 24px 0 24px;
   }
 
   .card-wrap {
