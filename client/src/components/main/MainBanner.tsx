@@ -10,6 +10,9 @@ const MainBannerBlock = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${media.medium} {
+    padding: 0 24px 0 24px;
+  }
 
   .wrapper {
     .banner-desc {

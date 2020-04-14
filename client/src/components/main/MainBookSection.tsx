@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import MainSectionTitle from './MainSectionTitle';
 import MainBookCard from './MainBookCard';
+import media from 'lib/styles/media';
 
 interface MainBookSectionProps {
   recommend: string;
@@ -47,6 +48,10 @@ const MainBookSectionBlock = styled.section`
   align-items: center;
   justify-content: center;
 
+  ${media.medium} {
+    padding: 0 36px 0 36px;
+  }
+
   .card-wrap {
     display: flex;
     margin-top: 20px;
@@ -55,6 +60,10 @@ const MainBookSectionBlock = styled.section`
 
 const MainBookSectionWrapper = styled.div`
   margin: 120px 0 120px 5%;
+
+  ${media.medium} {
+    margin: 60px 0 60px 5%;
+  }
 `;
 
 export default MainBookSection;
