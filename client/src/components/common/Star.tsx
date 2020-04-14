@@ -1,22 +1,18 @@
 import React from 'react';
-import Icon from './Icon';
+import { MdStarBorder, MdStarHalf, MdStar } from 'react-icons/md';
 
 interface StarProps {
   rate: number;
 }
 
 const Star: React.FC<StarProps> = ({ rate }) => {
-  let type;
-
   if (rate === 1) {
-    type = 'star';
+    return <MdStar color="#ffc93d" />;
   } else if (rate === 0.5) {
-    type = 'star_half';
+    return <MdStarHalf color="#ffc93d" />;
   } else {
-    type = 'star_border';
+    return <MdStarBorder color="#ffc93d" />;
   }
-
-  return <Icon name={type} color="#ffc93d" />;
 };
 
 export default Star;
