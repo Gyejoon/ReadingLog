@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { mainBanner } from 'static/images';
-// import media from 'lib/styles/media';
+import media from 'lib/styles/media';
 import MainSearch from './MainSearch';
 import MainReview from './MainReview';
 
@@ -13,7 +13,12 @@ const MainBannerBlock = styled.section`
 
   .wrapper {
     .banner-desc {
-      font-size: 55px;
+      font-size: 54px;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      font-weight: 600;
+      ${media.medium} {
+        font-size: 36px;
+      }
       color: #fff;
     }
   }
