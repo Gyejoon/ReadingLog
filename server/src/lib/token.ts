@@ -127,6 +127,7 @@ export const consumeUser = async (
       throw new Error('NoAccessToken');
     }
     const accessTokenData = await decodeToken<AccessTokenData>(accessToken);
+
     req.app.set('user_id', accessTokenData.user_id);
     // refresh token when life < 30mins
     const diff = accessTokenData.exp * 1000 - new Date().getTime();
@@ -135,6 +136,7 @@ export const consumeUser = async (
     }
   } catch (e) {
     // invalid token! try token refresh...
+    req.app.set('user_id', null);
     if (!refreshToken) return next();
     try {
       const userId = await refresh(res, refreshToken);
