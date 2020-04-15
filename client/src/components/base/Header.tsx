@@ -9,6 +9,7 @@ import { userThumbnail } from 'static/images';
 import { MdArrowDropDown, MdMenu } from 'react-icons/md';
 import useToggle from 'lib/hooks/useToggle';
 import HeaderUserDropDown from './HeaderUserDropDown';
+import Drawer from './Drawer';
 
 interface HeaderProps {}
 
@@ -19,6 +20,9 @@ const Header: React.SFC<HeaderProps> = () => {
     onLogout,
     showLoginModal,
     showRegisterModal,
+    drawer,
+    showDrawer,
+    closeDrawer,
   } = useHeader();
   const [userDropDown, toggleUserDropDown] = useToggle(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -32,11 +36,26 @@ const Header: React.SFC<HeaderProps> = () => {
     [toggleUserDropDown],
   );
 
+  const onDrawerClick = useCallback(() => {
+    showDrawer();
+  }, [showDrawer]);
+
+  const onDrawerOutSideClick = useCallback(
+    (_: React.MouseEvent) => {
+      closeDrawer();
+    },
+    [closeDrawer],
+  );
+
   return (
     <HeaderBlock>
       <div className="title">
         <div className="mobile-drawer">
-          <MdMenu size="32" color={palette.blue.bright} />
+          <MdMenu
+            size="32"
+            color={palette.blue.bright}
+            onClick={onDrawerClick}
+          />
         </div>
         <div className="banner">
           <Link to="/">
@@ -45,6 +64,7 @@ const Header: React.SFC<HeaderProps> = () => {
         </div>
       </div>
       <Navigation path={path} />
+      <Drawer visible={drawer} onOutSideClick={onDrawerOutSideClick} />
       {user ? (
         <HeaderRight>
           <div
@@ -61,6 +81,7 @@ const Header: React.SFC<HeaderProps> = () => {
           </div>
           <HeaderUserDropDown
             visible={userDropDown}
+            nickname={user.profile.nickname}
             onClose={onOutsideClick}
             onLogout={onLogout}
           />
@@ -86,10 +107,10 @@ const HeaderBlock = styled.header`
   left: 0;
   align-items: center;
   justify-content: center;
-  height: 74px;
+  height: 72px;
   margin: 0 auto;
 
-  .title {
+  > .title {
     display: flex;
     flex: 1;
     padding-left: 16px;

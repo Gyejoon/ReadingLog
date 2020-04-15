@@ -4,6 +4,7 @@ import { CurrentUser } from 'lib/graphql/user';
 export type AuthMode = 'REGISTER' | 'LOGIN';
 
 export interface CoreState {
+  drawer: boolean;
   layer: boolean;
   user: CurrentUser | null;
   auth: {
@@ -13,6 +14,7 @@ export interface CoreState {
 }
 
 const initialState: CoreState = {
+  drawer: false,
   layer: false,
   user: null,
   auth: {
@@ -25,6 +27,14 @@ const core = createSlice({
   name: 'core',
   initialState,
   reducers: {
+    showDrawer(state) {
+      state.drawer = true;
+      state.layer = true;
+    },
+    closeDrawer(state) {
+      state.drawer = false;
+      state.layer = false;
+    },
     showAuthModal(state) {
       state.auth.visible = true;
       state.layer = true;
@@ -47,6 +57,8 @@ export const {
   closeAuthModal,
   changeAuthModalMode,
   setUser,
+  showDrawer,
+  closeDrawer
 } = core.actions;
 
 export default core;

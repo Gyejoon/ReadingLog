@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import media from 'lib/styles/media';
 import { Link } from 'react-router-dom';
+import HeaderSearch from './HeaderSearch';
 
 const NavigationBlock = styled.div`
   display: flex;
   flex: 3;
   ul {
-    ${media.small} {
+    ${media.medium} {
       display: none;
     }
 
@@ -65,6 +66,7 @@ const Navigation: React.SFC<NavigationProps> = ({ path }) => {
   return (
     <NavigationBlock>
       <ul>{navRender()}</ul>
+      <HeaderSearch />
     </NavigationBlock>
   );
 };

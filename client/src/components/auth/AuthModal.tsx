@@ -4,6 +4,7 @@ import { MdClose } from 'react-icons/md';
 import transitions from 'lib/styles/transitions';
 import palette from 'lib/styles/palette';
 import { AuthMode } from 'modules/core';
+import useCloseTransition from 'lib/hooks/useCloseTransition';
 
 const AuthModalBlock = styled.div<{ visible: boolean; mode: AuthMode }>`
   position: fixed;
@@ -69,6 +70,10 @@ const AuthModal: React.SFC<AuthModalProps> = ({
   children,
   onClose,
 }) => {
+  const { closed } = useCloseTransition(visible, 200);
+
+  if (!visible && closed) return null;
+
   return (
     <AuthModalBlock visible={visible} mode={mode}>
       <div className="wrapper">

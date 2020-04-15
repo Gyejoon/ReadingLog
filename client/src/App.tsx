@@ -6,6 +6,8 @@ import ReadingLogPage from 'pages/ReadingLogPage';
 import Core from 'containers/base/Core';
 import UserPage from 'pages/UserPage';
 import Header from 'components/base/Header';
+import BookRegisterPage from 'pages/books/BookRegisterPage';
+import BookDetailPage from 'pages/books/BookDetailPage';
 
 interface AppProps {}
 
@@ -25,6 +27,8 @@ const App: React.FC<AppProps> = () => {
         <Route path="/" component={MainPage} exact />
         <Route path="/reading-log" component={ReadingLogPage} />
         <Route path="/@:username" component={UserPage} />
+        <Route path="/book-register" component={BookRegisterPage} />
+        <Route path="/books/:id" component={BookDetailPage} />
       </Switch>
       <Core />
     </>
