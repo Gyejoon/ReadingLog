@@ -107,6 +107,19 @@ export const localRegister = async (req: Request, res: Response) => {
     return;
   }
 
+  const existsNickName = await getRepository(UserProfile).findOne({
+    where: [{ nickname }],
+  });
+
+  if (existsNickName) {
+    res.status(409);
+    res.json({
+      name: 'ALREADY_EXISTS',
+      payload: 'nickname'
+    });
+    return;
+  }
+
   const newUser = new User();
   newUser.username = username;
   newUser.password = hash(password);
