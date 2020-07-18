@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import FeedItem from './FeedItem';
 
 const FeedListBlock = styled.div`
   display: flex;
@@ -9,7 +10,14 @@ const FeedListBlock = styled.div`
 interface FeedListProps {}
 
 const FeedList: React.SFC<FeedListProps> = () => {
-  return <FeedListBlock></FeedListBlock>;
+  return (
+    <FeedListBlock>
+      <FeedItem />
+      <FeedItem />
+      <FeedItem />
+      <FeedItem />
+    </FeedListBlock>
+  );
 };
 
 export default FeedList;
