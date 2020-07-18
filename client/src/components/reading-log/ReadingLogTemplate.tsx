@@ -7,22 +7,22 @@ interface Props {}
 const ReadingLogTemplate: React.SFC<Props> = ({ children }) => {
   return (
     <Block>
-      <div className="content">{children}</div>
+      <ContentWrapper>{children}</ContentWrapper>
     </Block>
   );
 };
 
 const Block = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color: ${theme.backgroundColor};
+`;
 
-  > .content {
-    width: 1024px;
-    margin: 0 auto;
-    position: relative;
-    top: 2rem;
-  }
+const ContentWrapper = styled.div`
+  width: 1024px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0 2rem 0;
 `;
 
 export default ReadingLogTemplate;
