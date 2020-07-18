@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { hot } from 'react-hot-loader/root';
 import client from './lib/graphql/client';
 import { createStore } from 'redux';
 import rootReducer from './modules';
@@ -28,12 +29,14 @@ const loadUser = () => {
 
 loadUser();
 
+const WithHotReload = process.env.NODE_ENV === 'production' ? App : hot(App);
+
 ReactDOM.render(
   <HelmetProvider>
     <Provider store={store}>
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <App />
+          <WithHotReload />
         </BrowserRouter>
       </ApolloProvider>
     </Provider>
@@ -41,7 +44,7 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-(window as any).fbAsyncInit = function() {
+(window as any).fbAsyncInit = function () {
   (window as any).FB.init({
     appId: '215662702997532',
     cookie: true,
@@ -52,7 +55,7 @@ ReactDOM.render(
   (window as any).FB.AppEvents.logPageView();
 };
 
-(function(d, s, id) {
+(function (d, s, id) {
   var js,
     fjs = d.getElementsByTagName(s)[0] as any;
   if (d.getElementById(id)) {
