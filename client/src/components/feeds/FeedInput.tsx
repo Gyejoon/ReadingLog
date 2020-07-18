@@ -6,6 +6,7 @@ interface Props {
   nickname: string;
 }
 
+//TODO. input cursor 되었을때, 확장된 edit창이 나올 수 있도록.
 const FeedInput: React.SFC<Props> = ({ profileImage, nickname }) => {
   const [content, setContent] = useState('');
 
