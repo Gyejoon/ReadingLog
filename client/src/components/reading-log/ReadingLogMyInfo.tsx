@@ -3,14 +3,21 @@ import styled from 'styled-components';
 
 interface Props {}
 
-const ReadingLogMyInfo: React.SFC<Props> = () => {
-  return <Block></Block>;
+const ReadingLogMyInfo: React.SFC<Props> = ({ children }) => {
+  return <Block>{children}</Block>;
 };
 
 const Block = styled.div`
-  width: calc(768px + 4.2rem);
+  width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 2rem;
+
+  > div {
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
 `;
 
 export default ReadingLogMyInfo;
