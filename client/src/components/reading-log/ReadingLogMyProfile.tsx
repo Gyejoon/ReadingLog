@@ -4,15 +4,18 @@ import Card from 'components/common/Card';
 import theme from 'lib/styles/theme';
 import { userThumbnail } from 'static/images';
 
-interface Props {}
+interface Props {
+  thumbnail: string | null;
+  nickname: string;
+}
 
-const ReadingLogMyProfile: React.SFC<Props> = () => {
+const ReadingLogMyProfile: React.SFC<Props> = ({ thumbnail, nickname }) => {
   return (
     <Card>
       <ProfileWrapper>
-        <img src={userThumbnail} alt="thumbnail" />
+        <img src={thumbnail || userThumbnail} alt="thumbnail" />
         <div className="profile-info">
-          <span className="nickname">우종규</span>
+          <span className="nickname">{nickname}</span>
           <div className="hash-tag">
             <span>#소설</span>
             <span>#자기계발</span>
