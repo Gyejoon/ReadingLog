@@ -50,6 +50,14 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -61,5 +69,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-hot-loader": "^4.12.21"
   }
 }

@@ -13,14 +13,8 @@ export const localLogin = async (req: Request, res: Response) => {
   };
 
   const schema = Joi.object().keys({
-    username: Joi.string()
-      .min(1)
-      .max(20)
-      .required(),
-    password: Joi.string()
-      .min(1)
-      .max(20)
-      .required(),
+    username: Joi.string().min(1).max(50).required(),
+    password: Joi.string().min(1).max(20).required(),
   });
 
   if (!validateBody(req, res, schema)) {
@@ -69,18 +63,10 @@ export const localRegister = async (req: Request, res: Response) => {
   };
 
   const schema = Joi.object().keys({
-    username: Joi.string()
-      .min(1)
-      .max(20)
-      .required(),
-    password: Joi.string()
-      .min(1)
-      .max(20)
-      .required(),
-    nickname: Joi.string()
-      .min(1)
-      .max(50)
-      .required(),
+    username: Joi.string().min(1).max(50).required(),
+    password: Joi.string().min(1).max(20).required(),
+    nickname: Joi.string().min(1).max(50).required(),
+    mobile_phone_number: Joi.string(),
   });
 
   if (!validateBody(req, res, schema)) {
@@ -115,7 +101,7 @@ export const localRegister = async (req: Request, res: Response) => {
     res.status(409);
     res.json({
       name: 'ALREADY_EXISTS',
-      payload: 'nickname'
+      payload: 'nickname',
     });
     return;
   }
