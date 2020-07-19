@@ -4,7 +4,7 @@ import theme from 'lib/styles/theme';
 
 interface Props {}
 
-const ReadingLogTemplate: React.SFC<Props> = ({ children }) => {
+const ReadingLogPageTemplate: React.SFC<Props> = ({ children }) => {
   return (
     <Block>
       <ContentWrapper>{children}</ContentWrapper>
@@ -19,10 +19,11 @@ const Block = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+  display: flex;
   width: 1024px;
   margin: 0 auto;
   position: relative;
   padding: 2rem 0 2rem 0;
 `;
 
-export default ReadingLogTemplate;
+export default ReadingLogPageTemplate;

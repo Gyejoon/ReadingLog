@@ -1,16 +1,21 @@
 import React from 'react';
 import FeedList from 'components/feeds/FeedList';
-import ReadingLogTemplate from 'components/reading-log/ReadingLogTemplate';
 import FeedInputContainer from 'containers/reading-log/FeedInputContainer';
+import ReadingLogMyInfo from 'components/reading-log/ReadingLogMyInfo';
+import ReadingLogContentTemplate from 'components/reading-log/ReadingLogContentTemplate';
+import ReadingLogPageTemplate from 'components/reading-log/ReadingLogPageTemplate';
 
 interface ReadingLogPageProps {}
 
 const ReadingLogPage: React.FC<ReadingLogPageProps> = () => {
   return (
-    <ReadingLogTemplate>
-      <FeedInputContainer />
-      <FeedList />
-    </ReadingLogTemplate>
+    <ReadingLogPageTemplate>
+      <ReadingLogContentTemplate>
+        <FeedInputContainer />
+        <FeedList />
+      </ReadingLogContentTemplate>
+      <ReadingLogMyInfo />
+    </ReadingLogPageTemplate>
   );
 };
 
