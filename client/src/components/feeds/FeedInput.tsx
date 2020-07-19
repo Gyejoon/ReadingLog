@@ -32,14 +32,14 @@ const FeedInput: React.SFC<Props> = ({ profileImage, nickname }) => {
 };
 
 const Block = styled.div`
-  width: 656px;
+  width: 100%;
   min-height: 24px;
   max-height: 256px;
   overflow: auto;
   box-shadow: 0 3px 22px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #e3e3e3;
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
 

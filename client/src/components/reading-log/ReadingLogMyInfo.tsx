@@ -8,7 +8,7 @@ const ReadingLogMyInfo: React.SFC<Props> = ({ children }) => {
 };
 
 const Block = styled.div`
-  width: 100%;
+  width: calc(100% - 656px);
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
