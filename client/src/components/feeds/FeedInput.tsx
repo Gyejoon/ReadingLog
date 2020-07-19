@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import styled from 'styled-components';
+import { userThumbnail } from 'static/images';
 
 interface Props {
   profileImage: string | null;
@@ -17,41 +18,55 @@ const FeedInput: React.SFC<Props> = ({ profileImage, nickname }) => {
 
   return (
     <Block>
-      {profileImage}
       <TextEdit contentEditable={true} onInput={onEditInput} />
       {!content && (
-        <TextEditPlaceHolder>
-          {nickname + ' 님이 읽고 있는 책 이야기를 해주세요'}
-        </TextEditPlaceHolder>
+        <div className="placeholder-wrapper">
+          <img src={profileImage || userThumbnail} alt="thumbnail" />
+          <TextEditPlaceHolder>
+            {nickname + ' 님이 읽고 있는 책 이야기를 해주세요'}
+          </TextEditPlaceHolder>
+        </div>
       )}
     </Block>
   );
 };
 
 const Block = styled.div`
-  width: 768px;
+  width: 100%;
   min-height: 24px;
   max-height: 256px;
   overflow: auto;
   box-shadow: 0 3px 22px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #e3e3e3;
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
+
+  .placeholder-wrapper {
+    position: absolute;
+    left: 0;
+    margin: 0 0 0 2.1rem;
+    > img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+  }
 `;
 
 const TextEdit = styled.div`
   width: 100%;
   position: relative;
+  padding-left: 5rem;
   z-index: 2;
   outline: none;
 `;
 
 const TextEditPlaceHolder = styled.span`
-  position: absolute;
-  left: 0;
-  margin: 0 0 0 2.1rem;
+  position: relative;
+  bottom: 0.6rem;
+  left: 1rem;
   font-size: 13px;
   color: #b4b4b4;
   font-weight: 500;
