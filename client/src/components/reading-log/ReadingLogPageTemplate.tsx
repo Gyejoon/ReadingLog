@@ -20,7 +20,7 @@ const Block = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  width: 1024px;
+  width: 1168px;
   margin: 0 auto;
   position: relative;
   padding: 2rem 0 2rem 0;

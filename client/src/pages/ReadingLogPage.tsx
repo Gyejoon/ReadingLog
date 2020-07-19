@@ -1,9 +1,9 @@
 import React from 'react';
 import FeedList from 'components/feeds/FeedList';
 import FeedInputContainer from 'containers/reading-log/FeedInputContainer';
-import ReadingLogMyInfo from 'components/reading-log/ReadingLogMyInfo';
 import ReadingLogContentTemplate from 'components/reading-log/ReadingLogContentTemplate';
 import ReadingLogPageTemplate from 'components/reading-log/ReadingLogPageTemplate';
+import ReadingLogMyInfoContainer from 'containers/reading-log/ReadingLogMyInfoContainer';
 
 interface ReadingLogPageProps {}
 
@@ -14,7 +14,7 @@ const ReadingLogPage: React.FC<ReadingLogPageProps> = () => {
         <FeedInputContainer />
         <FeedList />
       </ReadingLogContentTemplate>
-      <ReadingLogMyInfo />
+      <ReadingLogMyInfoContainer />
     </ReadingLogPageTemplate>
   );
 };

@@ -29,7 +29,7 @@ const FeedInput: React.SFC<Props> = ({ profileImage, nickname }) => {
 };
 
 const Block = styled.div`
-  width: 768px;
+  width: 656px;
   min-height: 24px;
   max-height: 256px;
   overflow: auto;

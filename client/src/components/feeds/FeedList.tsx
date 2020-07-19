@@ -16,7 +16,7 @@ const FeedList: React.SFC<Props> = () => {
 };
 
 const Block = styled.div`
-  width: calc(768px + 4.2rem);
+  width: calc(656px + 4.2rem);
   display: flex;
   flex-direction: column;
 `;
