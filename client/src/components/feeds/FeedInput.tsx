@@ -58,7 +58,7 @@ const Block = styled.div`
 const TextEdit = styled.div`
   width: 100%;
   position: relative;
-  padding-left: 3rem;
+  padding-left: 5rem;
   z-index: 2;
   outline: none;
 `;
