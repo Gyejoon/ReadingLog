@@ -23,6 +23,7 @@ export const typeDef = gql`
   }
   extend type Query {
     auth: User
+    user: User
   }
 `;
 
@@ -36,6 +37,18 @@ export const resolvers: IResolvers<any, ApolloContext> = {
       });
 
       return user;
+    },
+    user: async (_parent: any, { username }, ctx) => {
+      const repo = getRepository(User);
+
+      if (username) {
+        const user = await repo.findOne({
+          where: { username },
+          relations: ['profile'],
+        });
+
+        return user;
+      }
     },
   },
   Mutation: {},

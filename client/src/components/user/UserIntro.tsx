@@ -3,10 +3,16 @@ import styled from 'styled-components';
 import { userPageBanner, userThumbnail } from 'static/images';
 import theme from 'lib/styles/theme';
 import pallete from 'lib/styles/palette';
+import useUserInfo from './hooks/useUserInfo';
 
 interface Props {}
 
 const UserIntro: React.SFC<Props> = () => {
+  const { userInfo } = useUserInfo();
+  const { data } = userInfo;
+
+  console.log(data);
+
   return (
     <Block>
       <div className="banner-wrapper">

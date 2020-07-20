@@ -81,7 +81,7 @@ const Header: React.SFC<HeaderProps> = () => {
           </div>
           <HeaderUserDropDown
             visible={userDropDown}
-            nickname={user.profile.nickname}
+            username={user.username}
             onClose={onOutsideClick}
             onLogout={onLogout}
           />

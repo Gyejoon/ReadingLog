@@ -6,14 +6,14 @@ import HeaderUserDropDownItem from './HeaderUserDropDownItem';
 interface HeaderUserDropDownProps {
   visible: boolean;
   onClose: (e: React.MouseEvent) => void;
-  nickname: string;
+  username: string;
   onLogout: () => void;
 }
 
 const HeaderUserDropDown: React.SFC<HeaderUserDropDownProps> = ({
   onClose,
   onLogout,
-  nickname,
+  username,
   visible,
 }) => {
   if (!visible) return null;
@@ -22,7 +22,7 @@ const HeaderUserDropDown: React.SFC<HeaderUserDropDownProps> = ({
     <OutsideClickHandler onOutsideClick={onClose}>
       <HeaderUserDropDownBlock onClick={onClose}>
         <DropDownWrapper>
-          <HeaderUserDropDownItem to={`/@${nickname}`}>
+          <HeaderUserDropDownItem to={`/@${username}`}>
             마이 페이지
           </HeaderUserDropDownItem>
           <HeaderUserDropDownItem onClick={onLogout}>

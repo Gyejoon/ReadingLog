@@ -1,17 +1,16 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import UserPageTemplate from 'components/user/UserPageTemplate';
 import UserContentTemplate from 'components/user/UserContentTemplate';
-import UserIntroContainer from 'containers/user/UserIntroContainer';
 import FeedList from 'components/feeds/FeedList';
 import UserAsideContainer from 'containers/user/UserAsideContainer';
+import UserIntro from 'components/user/UserIntro';
 
-interface Props extends RouteComponentProps<{ username: string }> {}
+interface Props {}
 
 const UserPage: React.FC<Props> = () => {
   return (
     <UserPageTemplate>
-      <UserIntroContainer />
+      <UserIntro />
       <UserContentTemplate>
         <UserAsideContainer />
         <FeedList />
