@@ -8,6 +8,7 @@ import UserPage from 'pages/UserPage';
 import Header from 'components/base/Header';
 import BookRegisterPage from 'pages/books/BookRegisterPage';
 import BookDetailPage from 'pages/books/BookDetailPage';
+import SettingPage from 'pages/SettingPage';
 
 interface AppProps {}
 
@@ -29,6 +30,7 @@ const App: React.FC<AppProps> = () => {
         <Route path="/@:username" component={UserPage} />
         <Route path="/book-register" component={BookRegisterPage} />
         <Route path="/books/:id" component={BookDetailPage} />
+        <Route path="/setting" component={SettingPage} />
       </Switch>
       <Core />
     </>

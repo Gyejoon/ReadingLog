@@ -25,6 +25,7 @@ const HeaderUserDropDown: React.SFC<HeaderUserDropDownProps> = ({
           <HeaderUserDropDownItem to={`/@${username}`}>
             마이 페이지
           </HeaderUserDropDownItem>
+          <HeaderUserDropDownItem to="/setting">설정</HeaderUserDropDownItem>
           <HeaderUserDropDownItem onClick={onLogout}>
             로그아웃
           </HeaderUserDropDownItem>
