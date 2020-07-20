@@ -54,10 +54,10 @@ export const GET_USER_PROFILE = gql`
       username
       profile {
         id
-        display_name
-        short_bio
+        nickname
         thumbnail
         profile_links
+        about
       }
     }
   }
@@ -67,6 +67,6 @@ export type GetUserProfileResponse = {
   user: {
     id: string;
     username: string;
-    profile: Omit<UserProfile, 'about'>;
+    profile: UserProfile;
   };
 };

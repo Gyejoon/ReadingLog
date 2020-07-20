@@ -11,7 +11,9 @@ const UserIntro: React.SFC<Props> = () => {
   const { userInfo } = useUserInfo();
   const { data } = userInfo;
 
-  console.log(data);
+  if (!data) return null;
+
+  const { profile } = data.user;
 
   return (
     <Block>
@@ -19,10 +21,10 @@ const UserIntro: React.SFC<Props> = () => {
         <img src={userPageBanner} alt={'banner'} />
       </div>
       <ProfileWrapper>
-        <img src={userThumbnail} alt="thumbnail" />
+        <img src={profile.thumbnail || userThumbnail} alt="thumbnail" />
         <div className="info-wrapper">
-          <p>우종규</p>
-          <span>베르나르 베르베르를 좋아하는 독자 1인입니다ㅎㅎ</span>
+          <p>{profile.nickname}</p>
+          <span>{profile.about || '소개글이 없습니다.'}</span>
         </div>
       </ProfileWrapper>
       <div className="navigate-wrapper">
@@ -40,11 +42,11 @@ const Block = styled.div`
 
   .banner-wrapper {
     position: relative;
-    height: 138px;
+    height: 156px;
 
     > img {
       width: 100%;
-      height: 138px;
+      height: 156px;
       display: block;
       position: relative;
       z-index: -1;

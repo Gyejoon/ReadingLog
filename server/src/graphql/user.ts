@@ -23,7 +23,7 @@ export const typeDef = gql`
   }
   extend type Query {
     auth: User
-    user: User
+    user(username: String): User
   }
 `;
 
