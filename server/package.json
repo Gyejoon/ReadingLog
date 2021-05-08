@@ -47,7 +47,7 @@
     "source-map-support": "^0.5.16",
     "ts-node": "^8.4.1",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typeorm": "^0.2.22",
+    "typeorm": "^0.2.25",
     "typescript": "^3.7.5",
     "webpack": "^4.41.6",
     "webpack-node-externals": "^1.7.2",
