@@ -40,7 +40,7 @@
     "jwt-simple": "^0.5.6",
     "morgan": "^1.10.0",
     "pg": "^7.14.0",
-    "qs": "^6.9.2",
+    "qs": "^6.9.7",
     "serverless-http": "^2.3.1",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.3.1",
